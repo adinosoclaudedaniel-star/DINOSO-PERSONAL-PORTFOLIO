@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dirioso - Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #3d1a1a;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ddd;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #f5f5f5;
+            padding: 80px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d2d2d;
+            transition: color 0.3s ease;
+        }
+
+        .hero-content h1:hover {
+            color: #3d1a1a;
+        }
+
+        .hero-content .subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .hero-image {
+            flex: 0 0 300px;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* About Section */
+        .about {
+            background-color: #f5f5f5;
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2d2d2d;
+        }
+
+        .about p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: #3d1a1a;
+            padding: 80px 50px;
+            color: white;
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .skills h2 {
+            font-size: 36px;
+            font-weight: 700;
+            flex: 0 0 200px;
+        }
+
+        .skills-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ddd;
+            max-width: 700px;
+        }
+
+        /* Works Section */
+        .works {
+            background-color: #3d1a1a;
+            padding: 80px 50px 100px;
+        }
+
+        .works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .works-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .works-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .works-header h2::before {
+            content: '✱ ';
+            color: white;
+        }
+
+        .view-all {
+            color: white;
+            text-decoration: underline;
+            font-size: 14px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .view-all:hover {
+            color: #ddd;
+            transform: translateX(5px);
+        }
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #8b6b6b 0%, #5d4545 100%);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-image {
+            flex: 0 0 400px;
+            background-color: #d4c4c4;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+
+        .project-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .project-info {
+            flex: 1;
+            color: white;
+        }
+
+        .project-info h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .project-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #e8e8e8;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            padding: 8px 18px;
+            border: 1px solid white;
+            border-radius: 20px;
+            font-size: 12px;
+            background-color: transparent;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            background-color: white;
+            color: #3d1a1a;
+            transform: scale(1.05);
+        }
+
+        .case-study-btn {
+            padding: 10px 25px;
+            background-color: white;
+            color: #3d1a1a;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .case-study-btn:hover {
+            background-color: #3d1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .case-study-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Placeholder styles for project images */
+        .analysis-img {
+            width: 100%;
+            height: 180px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .analysis-img::before {
+            content: '';
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .analysis-cards {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            bottom: 30px;
+        }
+
+        .mini-card {
+            width: 70px;
+            height: 60px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .fortknox-img {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .zenocide-img {
+            width: 100%;
+            height: 180px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bird-icon {
+            width: 60px;
+            height: 60px;
+            border-bottom: 3px solid #333;
+            border-right: 3px solid #333;
+            transform: rotate(-45deg) skew(-10deg, -10deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            nav {
+                padding: 15px 30px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 60px 30px;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-image {
+                flex: 0 0 250px;
+            }
+
+            .about, .skills-container, .works-container {
+                padding: 60px 30px;
+            }
+
+            .about h2, .skills h2, .works-header h2 {
+                font-size: 32px;
+            }
+
+            .skills-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .project-card {
+                flex-direction: column;
+            }
+
+            .project-image {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                flex: 0 0 200px;
+            }
+
+            .about, .skills, .works {
+                padding: 40px 20px;
+            }
+
+            .about h2, .skills h2, .works-header h2 {
+                font-size: 28px;
+            }
+
+            .project-card {
+                padding: 20px;
+            }
+
+            .project-info h3 {
+                font-size: 22px;
+            }
+
+            .project-image {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Dirioso</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p>Hi! my name is Claudio Daniel A. Dirioso</p>
+            <h1>Web Developer</h1>
+            <p class="subtitle">I love Noodle</p>
+        </div>
+        <div class="hero-image">
+            <img src="profile/din.jpg" alt="Profile Photo">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About me</h2>
+        <p>I am a dedicated and hardworking student who strives to improve myself in every opportunity I encounter. I look at learning not just inside the classroom but also through experiences that help me grow as a person. I enjoy exploring new ideas, working with others, and taking on challenges that push me to think critically and creatively. With perseverance and dedication, I aim to achieve my academic goals and develop the skills I need for future success.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="skills-container">
+            <h2>Skills</h2>
+            <div class="skills-text">
+                <p>"I have strong communication skills that allow me to share my thoughts clearly and listen to others' perspectives. My ability to work well in teams and problem-solving mindset help me approach challenges in unique ways, always looking for solutions that make tasks easier and more efficient. I stay organized, especially when juggling multiple responsibilities, like balancing schoolwork, projects, and personal responsibilities without losing clarity. Additionally, I have a strong foundation in basic computer skills that I use to complete assignments, research, and express my creativity, and I'm eager to continue growing my knowledge and apply them in meaningful ways."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section class="works" id="work">
+        <div class="works-container">
+            <div class="works-header">
+                <h2>Works</h2>
+                <a href="#" class="view-all">view all</a>
+            </div>
+
+            <div class="projects">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="analysis-img">
+                            <div class="analysis-cards">
+                                <div class="mini-card"></div>
+                                <div class="mini-card"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Analysis Application</h3>
+                        <p>With user-centered approach, the goals was to create an intuitive interface for enhanced financial intelligence.</p>
+                        <div class="project-tags">
+                            <span class="tag">FIGMA</span>
+                            <span class="tag">UI</span>
+                        </div>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="fortknox-img">sottozero</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Fortknox Application</h3>
+                        <p>With user-centered approach, the goals was to create an intuitive interface for enhanced financial intelligence.</p>
+                        <div class="project-tags">
+                            <span class="tag">FIGMA</span>
+                            <span class="tag">UX/UI</span>
+                        </div>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="zenocide-img">
+                            <div>MINIMALISMUS</div>
+                            <div class="bird-icon"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Zenocide Application</h3>
+                        <p>With user-centered approach, the goals was to create an intuitive interface for enhanced financial intelligence.</p>
+                        <div class="project-tags">
+                            <span class="tag">FIGMA</span>
+                            <span class="tag">UX/UI</span>
+                        </div>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
